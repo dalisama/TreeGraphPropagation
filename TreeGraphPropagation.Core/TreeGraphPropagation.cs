@@ -15,10 +15,14 @@ namespace TreeGraphPropagation.Core
 
     
 
-        public Root<TNode>? GetOptimisedRoot()
+        public Root<TNode>[] GetOptimisedRoot()
         {
+          
             if (Tree == null || !Tree.Any()) return null;
-            if (Tree.Count == 1) return new Root<TNode>(Tree.Keys.FirstOrDefault(), 0);
+            if (Tree.Count == 1) return new Root<TNode>[1] { new Root<TNode>(Tree.Keys.FirstOrDefault(), 0) };
+            if (Tree.Count == 2) return new Root<TNode>[2] { new Root<TNode>(Tree.Keys.FirstOrDefault(), 0) , new Root<TNode>(Tree.Keys.LastOrDefault(), 0) };
+
+         
             return null;
         }
 
