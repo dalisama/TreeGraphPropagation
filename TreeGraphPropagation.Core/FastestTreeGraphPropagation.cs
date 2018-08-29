@@ -19,6 +19,7 @@ namespace TreeGraphPropagation.Core
         public Root<TNode>[] GetFastOptimisedRoot()
         {
             if (EdgesList == null || !EdgesList.Any()) return null;
+            if(EdgesList.Count==1) return new Root<TNode>[2] { new Root<TNode>(EdgesList.FirstOrDefault().Item1, 1), new Root<TNode>(EdgesList.FirstOrDefault().Item2, 1) };
             return null;
         }
     }
