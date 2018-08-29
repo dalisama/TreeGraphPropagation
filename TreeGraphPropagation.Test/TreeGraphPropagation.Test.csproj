@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FastestTreeGraphPropagationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TreeGraphPropagationTest.cs" />
   </ItemGroup>

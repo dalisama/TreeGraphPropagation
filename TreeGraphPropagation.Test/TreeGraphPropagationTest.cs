@@ -10,7 +10,7 @@ namespace TreeGraphPropagation.Test
     public class TreeGraphPropagationTest
     {
 
-        public class Node: IEquatable<Node>
+        private class Node: IEquatable<Node>
         {
             public int NodeId { get; set; }
             // override object.Equals
