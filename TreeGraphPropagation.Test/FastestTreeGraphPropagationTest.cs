@@ -11,7 +11,7 @@ namespace TreeGraphPropagation.Test
     [TestClass]
     public class FastestTreeGraphPropagationTest
     {
-        private class Node : IEquatable<Node>
+        private class Node : IEqualityComparer<Node>
         {
             public int NodeId { get; set; }
             // override object.Equals
@@ -27,16 +27,24 @@ namespace TreeGraphPropagation.Test
                 return ((Node)obj).NodeId == this.NodeId;
             }
 
-            public bool Equals(Node other)
+
+
+            public bool Equals(Node x, Node y)
             {
-                return other.NodeId == this.NodeId;
+                return x.NodeId == y.NodeId;
             }
 
             // override object.GetHashCode
+
+
+            public int GetHashCode(Node obj)
+            {
+                return obj.GetHashCode();
+            }
+
             public override int GetHashCode()
             {
-
-                return base.GetHashCode();
+                return -1065341352 + NodeId.GetHashCode();
             }
         }
 
@@ -58,6 +66,49 @@ namespace TreeGraphPropagation.Test
             Assert.AreEqual(result[0].Propagation, 1);
             Assert.AreEqual(result[1].RootNode.NodeId, 2);
             Assert.AreEqual(result[1].Propagation, 1);
+        }
+        [TestMethod]
+        public void Should_ReturnTWORoot_When_TreeHasElements()
+        {
+            var edgeList = new List<Tuple<Node, Node>>();
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 1 }, new Node { NodeId = 2 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 4 }, new Node { NodeId = 2 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 3 }, new Node { NodeId = 2 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 4 }, new Node { NodeId = 5 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 4 }, new Node { NodeId = 6 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 3 }, new Node { NodeId = 8 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 3 }, new Node { NodeId = 7 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 9 }, new Node { NodeId = 7 }));
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edgeList);
+            Assert.IsNotNull(treeGraphPropagation.GetFastOptimisedRoot());
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId, 3);
+            Assert.AreEqual(result[0].Propagation, 3);
+            Assert.AreEqual(result[1].RootNode.NodeId, 2);
+            Assert.AreEqual(result[1].Propagation, 3);
+
+        }
+
+
+        [TestMethod]
+        public void Should_ReturnOneRoot_When_TreeHasElements()
+        {
+            var edgeList = new List<Tuple<Node, Node>>();
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 1 }, new Node { NodeId = 2 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 4 }, new Node { NodeId = 2 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 3 }, new Node { NodeId = 2 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 4 }, new Node { NodeId = 5 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 4 }, new Node { NodeId = 6 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 3 }, new Node { NodeId = 8 }));
+            edgeList.Add(new Tuple<Node, Node>(new Node { NodeId = 3 }, new Node { NodeId = 7 }));
+
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edgeList);
+            Assert.IsNotNull(treeGraphPropagation.GetFastOptimisedRoot());
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId,2);
+            Assert.AreEqual(result[0].Propagation, 2);
+       
+
         }
     }
 }
