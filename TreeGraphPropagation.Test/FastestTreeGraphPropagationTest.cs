@@ -229,6 +229,115 @@ namespace TreeGraphPropagation.Test
             Assert.AreEqual(result[0].Propagation, 5);
 
         }
+
+        [TestMethod]
+        public void Should_ReturnOneRoot_When_TestFile07AndDevideToConquerIndex2()
+        {
+            var edges = GetDataFromFile(@"TestFile\Test07.txt");
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edges,2);
+
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId, 1327);
+            Assert.AreEqual(result[0].Propagation, 15);
+
+        }
+
+        [TestMethod]
+        public void Should_ReturnOneRoot_When_TestFile08AndDevideToConquerIndex2()
+        {
+            var edges = GetDataFromFile(@"TestFile\Test08.txt");
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edges,2);
+
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId, 8226);
+            Assert.AreEqual(result[0].Propagation, 9);
+
+        }
+        [TestMethod]
+        public void Should_ReturnOneRoot_When_TestFile09AndDevideToConquerIndex2()
+        {
+            var edges = GetDataFromFile(@"TestFile\Test09.txt");
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edges,2);
+
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId, 41078);
+            Assert.AreEqual(result[0].Propagation, 15);
+
+        }
+
+        [TestMethod]
+        public void Should_ReturnOneRoot_When_TestFile07AndDevideToConquerIndex5()
+        {
+            var edges = GetDataFromFile(@"TestFile\Test07.txt");
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edges, 5);
+
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId, 1327);
+            Assert.AreEqual(result[0].Propagation, 15);
+
+        }
+
+        [TestMethod]
+        public void Should_ReturnOneRoot_When_TestFile08AndDevideToConquerIndex5()
+        {
+            var edges = GetDataFromFile(@"TestFile\Test08.txt");
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edges, 5);
+
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId, 8226);
+            Assert.AreEqual(result[0].Propagation, 9);
+
+        }
+        [TestMethod]
+        public void Should_ReturnOneRoot_When_TestFile09AndDevideToConquerIndex5()
+        {
+            var edges = GetDataFromFile(@"TestFile\Test09.txt");
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edges, 5);
+
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId, 41078);
+            Assert.AreEqual(result[0].Propagation, 15);
+
+        }
+
+
+        [TestMethod]
+        public void Should_ReturnOneRoot_When_TestFile07AndDevideToConquerIndex10()
+        {
+            var edges = GetDataFromFile(@"TestFile\Test07.txt");
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edges, 10);
+
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId, 1327);
+            Assert.AreEqual(result[0].Propagation, 15);
+
+        }
+
+        [TestMethod]
+        public void Should_ReturnOneRoot_When_TestFile08AndDevideToConquerIndex10()
+        {
+            var edges = GetDataFromFile(@"TestFile\Test08.txt");
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edges, 10);
+
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId, 8226);
+            Assert.AreEqual(result[0].Propagation, 9);
+
+        }
+        [TestMethod]
+        public void Should_ReturnOneRoot_When_TestFile09AndDevideToConquerIndex10()
+        {
+            var edges = GetDataFromFile(@"TestFile\Test09.txt");
+            var treeGraphPropagation = new FastestTreeGraphPropagation<Node>(edges, 10);
+
+            var result = treeGraphPropagation.GetFastOptimisedRoot();
+            Assert.AreEqual(result[0].RootNode.NodeId, 41078);
+            Assert.AreEqual(result[0].Propagation, 15);
+
+        }
+
+
+
         private List<Tuple<Node,Node>> GetDataFromFile(string Path)
         {
             var data = File.ReadAllLines(Path);
@@ -245,5 +354,6 @@ namespace TreeGraphPropagation.Test
             }
             return result;
         }
+
     }
 }
